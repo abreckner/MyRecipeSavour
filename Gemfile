@@ -7,6 +7,22 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 
+group :test do
+  gem "cucumber-rails", "~> 1.3.0"
+end
+
+gem "capybara"
+gem "rspec"
+
+gem 'database_cleaner'
+gem 'cucumber'
+gem 'rspec-rails'
+gem 'spork'
+gem 'launchy'   # so we can use : Then show me the page
+
+gem 'machinist', '>= 2.0.0.beta1'
+gem 'faker'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
