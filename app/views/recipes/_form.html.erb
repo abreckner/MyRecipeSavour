@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <label>Instructions</label><br />
-    <%= text_area_tag 'instructions', @instructions, :cols => 40, :rows => 20 %>
+    <%= text_area_tag 'instructions', @instructions, :cols => 40, :rows => 20, :raw => true %>
+  </div>
+  <div class="field">
+    <label>Ingredients</label><br />
+    <%= text_area_tag 'ingredients', @ingredients, :cols => 40, :rows => 20, :raw => true %>
   </div>
 
   <div class="actions">

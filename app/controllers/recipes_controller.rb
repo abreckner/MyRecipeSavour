@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @instructions = @recipe.instructions
+    @ingredients = @recipe.ingredients
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,6 +37,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @instructions = @recipe.instructions.inject(""){|sum, i| sum + i.content + "\n"}
+    @ingredients = @recipe.ingredients.inject(""){|sum, i| sum + i.content + "\n"}
   end
 
   # POST /recipes
@@ -46,6 +49,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         Instruction.multi_save(params[:instructions], @recipe)
+        Ingredient.multi_save(params[:ingredients], @recipe)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
@@ -62,6 +66,10 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
+        Instruction.delete_all
+        Ingredient.delete_all
+        Instruction.multi_save(params[:instructions], @recipe)
+        Ingredient.multi_save(params[:ingredients], @recipe)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { head :no_content }
       else

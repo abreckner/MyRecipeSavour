@@ -1,4 +1,13 @@
 class Ingredient < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :content
   belongs_to :recipe
+
+  def self.multi_save(ingredients = '', recipe)
+    lines = ingredients.split(/\r\n|\n/)
+    lines.each do |line|
+      ing = self.new(:content => line)
+      recipe.ingredients << ing
+      recipe.save
+    end
+  end
 end

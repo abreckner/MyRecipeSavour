@@ -4,4 +4,6 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients
   has_many :instructions
   belongs_to :user
+
+  validates :num_people, :numericality => true
 end
