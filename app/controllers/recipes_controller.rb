@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @instructions = @recipe.instructions
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,6 +45,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        Instruction.multi_save(params[:instructions], @recipe)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
       else

@@ -1,5 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-
+<div>
+  Name: <%= @recipe.name %>
+</div>
+<div>
+  Description: <%= @recipe.description %>
+</div>
+<div>
+  Number of people: <%= @recipe.num_people %>
+</div>
+<div>
+  <strong>Instructions</strong>
+</div>
+<ol>
+<% @instructions.each do |instruction| %>
+  <li>
+    <%= instruction.content %>
+  </li>
+<% end %>
+</ol>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

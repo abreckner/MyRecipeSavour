@@ -1,4 +1,8 @@
 MyRecipeSaviour::Application.routes.draw do
+  resources :equipment
+
+  resources :users
+
   resources :ingredients
 
   resources :instructions
