@@ -1,5 +1,5 @@
 class Instruction < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content, :length_in_minutes
   belongs_to :recipe
 
   def self.multi_save(instructions = '', recipe)

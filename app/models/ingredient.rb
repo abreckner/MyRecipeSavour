@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content, :amount
   belongs_to :recipe
 
   def self.multi_save(ingredients = '', recipe)
