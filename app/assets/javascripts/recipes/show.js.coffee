@@ -41,7 +41,18 @@ save_ingredient = ->
         ingredients_table = $('#ingredients_table tbody')
         ingredients_table.append _.template(ingredient_row_template, {ingredient: data})
         $('.new_ingredient input').hide();
-        $('.new_ingredient input').val(''); 
+        $('.new_ingredient input').val('');
+
+delete_ingredient_handler = ->
+  ingredient_id = $(this).attr('data-ref')
+  $.ajax "/ingredients/#{ingredient_id}.json",
+    type: 'DELETE'
+    dataType: 'JSON'
+    error: (jqXHR, textStatus, errorThrown) ->
+      $('body').append "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      $('body').append "Successful AJAX call: #{data}"
+      $(".ingredient[data-ref=#{ingredient_id}]").hide('fast', -> $(this).remove())
 
 ingredient_row_template = """
   <tr class="ingredient" data-ref="<%=ingredient.id%>">
@@ -59,5 +70,6 @@ ingredient_row_template = """
 $ ->
   $('.ingredient_type').live 'select', ingredient_select_handler
   $('#add_ingredient').bind 'click', add_ingredient_handler
-  $('.new_ingredient_type').live 'blur', save_ingredient 
+  $('.new_ingredient_type').live 'blur', save_ingredient
+  $('.delete_ingredient').live 'click', delete_ingredient_handler 
     
