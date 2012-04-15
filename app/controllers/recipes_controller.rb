@@ -66,8 +66,8 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
-        Instruction.delete_all
-        Ingredient.delete_all
+        @recipe.instructions.delete_all
+        @recipe.ingredients.delete_all
         Instruction.multi_save(params[:instructions], @recipe)
         Ingredient.multi_save(params[:ingredients], @recipe)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
