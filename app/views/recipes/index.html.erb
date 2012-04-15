@@ -27,7 +27,9 @@
     content_tag(:strong, 'Add Url')
   end %>
 <% end %>
+
 <% if flash[:notice] %>
   <p class="flash-notice"><%= flash[:notice] %></p>
 <% end %>
+
 <%= link_to 'Add new Site', new_site_path %>

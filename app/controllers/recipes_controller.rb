@@ -95,7 +95,7 @@ class RecipesController < ApplicationController
   end
 
   def add_url
-    @recipe = Site.add_recipe(params[:url])
+    @recipe = Site.add_recipe(params[:url], current_user)
     respond_to do |format|
       if @recipe
         current_user.recipes << @recipe
@@ -104,8 +104,8 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
         format.html { 
-          flash[:notice] ="Could not add url. Please check the site is in the list"
-          redirect_to action: "index"  
+          flash[:notice] ="This site has not yet been indexed. In the meantime you can copy and paste the recipe here."
+          redirect_to action: :new  
         }
       end
     end
