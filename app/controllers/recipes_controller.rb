@@ -90,4 +90,19 @@ class RecipesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_url
+    @recipe = Site.add_recipe(params[:url])
+    respond_to do |format|
+      if @recipe
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully added.' }
+        format.json { render json: @recipe, status: :created, location: @recipe }
+      else
+        format.html { 
+          flash[:notice] ="Could not add url. Please check the site is in the list"
+          redirect_to action: "index"  
+        }
+      end
+    end
+  end
 end

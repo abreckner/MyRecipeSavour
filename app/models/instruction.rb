@@ -3,15 +3,15 @@ class Instruction < ActiveRecord::Base
   belongs_to :recipe
 
   def self.multi_save(instructions = '', recipe)
-    instructions_contents = instructions.split(/\r\n|\n/)
+    instructions_contents = instructions.split(/\r\n|\n|\r/)
     instructions_contents.each do |instruction_content|
       if instruction_content.include? '|'
         line_items = instruction_content.split('|')
         inst = self.new(:content => line_items[0].strip, :length_in_minutes => line_items[1].match(/.+\d/)[0])
       else
-        inst = self.new(:content => instruction_content.strip)
+        inst = self.new(:content => instruction_content.strip) if instruction_content.strip.length > 0
       end
-      recipe.instructions << inst
+      recipe.instructions << inst unless inst.nil?
       recipe.save
     end
   end

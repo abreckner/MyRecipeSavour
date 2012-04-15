@@ -13,16 +13,6 @@
   <div>
     Number of people: <%= @recipe.num_people %>
   </div>
-  <div>
-    <strong>Instructions</strong>
-  </div>
-  <ol>
-  <% @instructions.each do |instruction| %>
-    <li>
-      <%= instruction.content %>
-    </li>
-  <% end %>
-  </ol>
 
   <div>
     <strong>Ingredients</strong>

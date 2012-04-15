@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Domain:</b>
+  <%= @site.domain %>
+</p>
+
+<p>
+  <b>Title selector:</b>
+  <%= @site.title_selector %>
+</p>
+
+<p>
+  <b>Method selector:</b>
+  <%= @site.method_selector %>
+</p>
+
+<p>
+  <b>Ingredient selector:</b>
+  <%= @site.ingredient_selector %>
+</p>
+
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
