@@ -8,7 +8,14 @@ end
 
 Instruction.blueprint do
   recipe {Recipe.make}
-  content {'Here is some content'}
+  content {'Place egg in boiling water'}
+  length_in_minutes {'5'}
+end
+
+Ingredient.blueprint do
+  recipe {Recipe.make}
+  content {'Water'}
+  amount {'5 litres'}
 end
 
 # Add your blueprints here.

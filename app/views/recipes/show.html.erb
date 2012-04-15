@@ -24,34 +24,6 @@
   </ol>
 
   <div>
-    <strong>Methods</strong>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Method
-        </th>
-        <th>
-          Duration (in minutes)
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @instructions.each do |instructions| %>
-        <tr data-ref="<%instructions.id%>">
-          <td>
-            <input type="text" value="<%= instructions.content %>" class="method" id="<%=instructions.id%>" />
-          </td>
-          <td>
-             <input type="text" value="<%= instructions.length_in_minutes %>" class="duration" id="<%=instructions.id%>" />
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <div>
     <strong>Ingredients</strong>
   </div>
   <table>
@@ -78,6 +50,36 @@
       <% end %>
     </tbody>
   </table>
+
+  <div>
+    <strong>Methods</strong>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Method
+        </th>
+        <th>
+          Duration (in minutes)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @instructions.each do |instructions| %>
+        <tr data-ref="<%instructions.id%>">
+          <td>
+            <input type="text" value="<%= instructions.content %>" class="method" id="<%=instructions.id%>" />
+          </td>
+          <td>
+             <input type="text" value="<%= instructions.length_in_minutes %> minute(s)" class="duration" id="<%=instructions.id%>" />
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  
 </form>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
