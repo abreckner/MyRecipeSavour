@@ -3,6 +3,7 @@
 <% end %>
 <p id="notice"><%= notice %></p>
 <form>
+  <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
   <div>
     Name: <%= @recipe.name %>
   </div>
@@ -26,17 +27,31 @@
   <div>
     <strong>Ingredients</strong>
   </div>
-  <table>
+  <table id="ingredients_table">
     <thead>
       <tr>
         <th>
           Amount
         </th>
-        <th>
+        <th colspan="2">
           Ingredient
         </th>
       </tr>
     </thead>
+    <tfoot>
+
+      <tr class="ingredient new_ingredient">
+          <td>
+            <input type="text" class="amount initially_invisible" />
+          </td>
+          <td>
+             <input type="text" class="ingredient_type new_ingredient_type initially_invisible" />
+          </td>
+          <td>
+            <button type="button" id="add_ingredient">Add Ingredient</button>
+          </td>
+        </tr>
+    </tfoot>
     <tbody>
       <% @ingredients.each do |ingredient| %>
         <tr class="ingredient" data-ref="<%=ingredient.id%>">
@@ -44,7 +59,10 @@
             <input type="text" value="<%= ingredient.amount %>" class="amount" />
           </td>
           <td>
-             <input type="text" value="<%= ingredient.content %>" class="ingredient_item" />
+             <input type="text" value="<%= ingredient.content %>" class="ingredient_type" />
+          </td>
+          <td>
+            <button type="button" class="delete_ingredient" data-ref="<%=ingredient.id%>">Delete Ingredient</button>
           </td>
         </tr>
       <% end %>

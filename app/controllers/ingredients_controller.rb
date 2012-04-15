@@ -40,7 +40,9 @@ class IngredientsController < ApplicationController
   # POST /ingredients
   # POST /ingredients.json
   def create
+    @recipe = Recipe.find(params[:recipe_id])
     @ingredient = Ingredient.new(params[:ingredient])
+    @ingredient.recipe = @recipe
 
     respond_to do |format|
       if @ingredient.save
