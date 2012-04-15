@@ -23,6 +23,8 @@ gem 'launchy'   # so we can use : Then show me the page
 gem 'machinist', '>= 2.0.0.beta1'
 gem 'faker'
 
+gem "devise", "~> 2.0.4"
+
 
 # Gems used only for assets and not required
 # in production environments by default.

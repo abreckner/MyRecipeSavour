@@ -1,4 +1,6 @@
 MyRecipeSaviour::Application.routes.draw do
+  devise_for :users
+
   resources :sites
 
   resources :equipment
@@ -12,6 +14,8 @@ MyRecipeSaviour::Application.routes.draw do
   resources :recipes
 
   match "/recipes/add_url" => "recipes#add_url"
+
+  root :to => "recipes#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,6 +51,8 @@ class RecipesController < ApplicationController
       if @recipe.save
         Instruction.multi_save(params[:instructions], @recipe)
         Ingredient.multi_save(params[:ingredients], @recipe)
+        current_user.recipes << @recipe
+        current_user.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
@@ -95,6 +98,8 @@ class RecipesController < ApplicationController
     @recipe = Site.add_recipe(params[:url])
     respond_to do |format|
       if @recipe
+        current_user.recipes << @recipe
+        current_user.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully added.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
