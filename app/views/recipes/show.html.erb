@@ -80,7 +80,7 @@
             <input type="text" value="<%= instructions.content %>" class="method" id="<%=instructions.id%>" />
           </td>
           <td>
-             <input type="text" value="<%= instructions.length_in_minutes + " minute(s)" unless instructions.length_in_minutes.blank %>" class="duration" id="<%=instructions.id%>" />
+             <input type="text" value="<%= instructions.length_in_minutes + " minute(s)" unless instructions.length_in_minutes.blank? %>" class="duration" id="<%=instructions.id%>" />
           </td>
         </tr>
       <% end %>
