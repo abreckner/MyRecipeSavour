@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: myrecipesaviour_development
+  database: myrecipesavour_development
   pool: 5
   username: tony
   password: stinky
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: myrecipesaviour_test
+  database: myrecipesavour_test
   pool: 5
   username: tony
   password: stinky
@@ -49,7 +49,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: myrecipesaviour_production
+  database: myrecipesavour_production
   pool: 5
   username: tony
   password: stinky

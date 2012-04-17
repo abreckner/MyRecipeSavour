@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MyRecipeSaviour::Application.load_tasks
+MyRecipeSavour::Application.load_tasks

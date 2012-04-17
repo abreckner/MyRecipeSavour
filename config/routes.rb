@@ -1,4 +1,4 @@
-MyRecipeSaviour::Application.routes.draw do
+MyRecipeSavour::Application.routes.draw do
   devise_for :users
 
   resources :sites
