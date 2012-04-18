@@ -19,7 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SitesController do
-
+=begin
   # This should return the minimal set of attributes required to create a valid
   # Site. As you add validations to Site, be sure to
   # update the return value of this method accordingly.
@@ -160,5 +160,5 @@ describe SitesController do
       response.should redirect_to(sites_url)
     end
   end
-
+=end
 end

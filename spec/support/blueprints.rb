@@ -18,6 +18,13 @@ Ingredient.blueprint do
   amount {'5 litres'}
 end
 
+Site.blueprint do
+  domain {'www.taste.com.au'}
+  title_selector {'h1'}
+  method_selector {'#methods li'}
+  ingredient_selector {'#ingredients li'}
+end
+
 # Add your blueprints here.
 #
 # e.g.
