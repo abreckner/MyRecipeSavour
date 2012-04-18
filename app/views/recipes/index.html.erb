@@ -20,11 +20,11 @@
 
 <br />
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= link_to 'Manually Add New Recipe', new_recipe_path %>
 <%= form_tag('/recipes/add_url') do %>
  <%= text_field_tag 'url' %>
   <%= button_tag do
-    content_tag(:strong, 'Add Url')
+    content_tag(:strong, 'Add Recipe by Url')
   end %>
 <% end %>
 
@@ -32,4 +32,3 @@
   <p class="flash-notice"><%= flash[:notice] %></p>
 <% end %>
 
-<%= link_to 'Add new Site', new_site_path %>

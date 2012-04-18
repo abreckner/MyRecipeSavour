@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_filter :authenticate_admin
   # GET /sites
   # GET /sites.json
   def index
@@ -78,6 +79,18 @@ class SitesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sites_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def authenticate_admin
+    if current_user
+      unless current_user.is_admin?
+        redirect_to :controller => :recipes
+      end
+    else
+      redirect_to :controller => :recipes
     end
   end
 end

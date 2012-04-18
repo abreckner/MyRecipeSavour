@@ -5,5 +5,6 @@ class Recipe < ActiveRecord::Base
   has_many :instructions
   belongs_to :user
 
-  validates :num_people, :numericality => true
+  validates :num_people, :numericality => { :only_integer => true }, :allow_blank => true
+  validates :name, :presence => true
 end

@@ -5,87 +5,29 @@
 <form>
   <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
   <div>
-    Name: <%= @recipe.name %>
-  </div>
-  <div>
-    Description: <%= @recipe.description %>
-  </div>
-  <div>
     Number of people: <%= @recipe.num_people %>
   </div>
 
   <div>
     <strong>Ingredients</strong>
   </div>
-  <table id="ingredients_table">
-    <thead>
-      <tr>
-        <th>
-          Amount
-        </th>
-        <th colspan="2">
-          Ingredient
-        </th>
-      </tr>
-    </thead>
-    <tfoot>
 
-      <tr class="ingredient new_ingredient">
-          <td>
-            <input type="text" class="amount initially_invisible" />
-          </td>
-          <td>
-             <input type="text" class="ingredient_type new_ingredient_type initially_invisible" />
-          </td>
-          <td>
-            <button type="button" id="add_ingredient">Add Ingredient</button>
-          </td>
-        </tr>
-    </tfoot>
-    <tbody>
-      <% @ingredients.each do |ingredient| %>
-        <tr class="ingredient" data-ref="<%=ingredient.id%>">
-          <td>
-            <input type="text" value="<%= ingredient.amount %>" class="amount" />
-          </td>
-          <td>
-             <input type="text" value="<%= ingredient.content %>" class="ingredient_type" />
-          </td>
-          <td>
-            <button type="button" class="delete_ingredient" data-ref="<%=ingredient.id%>">Delete Ingredient</button>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li><%= ingredient.formatted_content %></li>
+    <% end %>
+  </ul>
 
   <div>
     <strong>Methods</strong>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Method
-        </th>
-        <th>
-          Duration (in minutes)
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @instructions.each do |instructions| %>
-        <tr data-ref="<%instructions.id%>">
-          <td>
-            <input type="text" value="<%= instructions.content %>" class="method" id="<%=instructions.id%>" />
-          </td>
-          <td>
-             <input type="text" value="<%= instructions.length_in_minutes + " minute(s)" unless instructions.length_in_minutes.blank? %>" class="duration" id="<%=instructions.id%>" />
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+
+  <ol>
+    <% @instructions.each do |instructions| %>
+      <li><%= instructions.formatted_content %></li>
+    <% end %>
+  </ol>  
+
 
   
 </form>
