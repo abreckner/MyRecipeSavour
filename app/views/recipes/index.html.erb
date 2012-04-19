@@ -16,7 +16,7 @@
 
 <br />
 
-<%= link_to 'Manually Add New Recipe', new_recipe_path %>
+
 <%= form_tag('/recipes/add_url') do %>
  <%= text_field_tag 'url' %>
   <%= button_tag do
@@ -26,6 +26,11 @@
 
 <br />
 
+<%= link_to 'Add your own Recipe', new_recipe_path %>
+
+
+<br />
+<br />
 <%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %>
 
 <% if flash[:notice] %>
