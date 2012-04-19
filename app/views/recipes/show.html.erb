@@ -4,6 +4,7 @@
 <p id="notice"><%= notice %></p>
 <form>
   <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
+  <h1><%= @recipe.name %></h1>
   <div>
     Number of people: <%= @recipe.num_people %>
   </div>

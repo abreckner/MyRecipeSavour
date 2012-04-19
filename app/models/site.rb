@@ -13,6 +13,8 @@ class Site < ActiveRecord::Base
   belongs_to :user
   before_save :parse_domain
 
+  scope :cataloged, where("title_selector IS NOT NULL and method_selector is NOT NULL and ingredient_selector IS NOT NULL and title_selector <> '' and method_selector <> '' and ingredient_selector <> ''")
+
   def self.add_recipe(url='', current_user)
     site_domain = URI.parse(url).host
     site = Site.find_by_domain site_domain

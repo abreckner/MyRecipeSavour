@@ -1,0 +1,17 @@
+<h1>Cataloged sites</h1>
+
+<table>
+  <tr>
+    <th>Domain</th>
+  </tr>
+
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.domain %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'Back', recipes_path %>
+

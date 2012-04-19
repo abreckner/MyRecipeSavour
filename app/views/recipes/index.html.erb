@@ -4,15 +4,11 @@
   <tr>
     <th>Name</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @recipes.each do |recipe| %>
   <tr>
-    <td><%= recipe.name %></td>
-    <td><%= link_to 'Show', recipe %></td>
-    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    <td><strong><%= link_to recipe.name, recipe %></strong></td>
     <td><%= link_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
@@ -27,6 +23,10 @@
     content_tag(:strong, 'Add Recipe by Url')
   end %>
 <% end %>
+
+<br />
+
+<%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %>
 
 <% if flash[:notice] %>
   <p class="flash-notice"><%= flash[:notice] %></p>

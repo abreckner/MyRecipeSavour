@@ -1,9 +1,18 @@
 class SitesController < ApplicationController
-  before_filter :authenticate_admin
+  before_filter :authenticate_admin, :except => :cataloged
   # GET /sites
   # GET /sites.json
   def index
     @sites = Site.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sites }
+    end
+  end
+
+  def cataloged
+    @sites = Site.cataloged
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +30,7 @@ class SitesController < ApplicationController
       format.json { render json: @site }
     end
   end
+
 
   # GET /sites/new
   # GET /sites/new.json
