@@ -9,31 +9,25 @@
 <% @recipes.each do |recipe| %>
   <tr>
     <td><strong><%= link_to recipe.name, recipe %></strong></td>
-    <td><%= link_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>
+    <td><i class="icon-trash"></i><%= link_to 'Delete', recipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<p>
+  <%= form_tag('/recipes/add_url') do %>
+   <%= text_field_tag 'url' %>
+    <%= button_tag do
+      content_tag(:strong, 'Add Recipe by Url')
+    end %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to 'Add your own Recipe', new_recipe_path %>
+</p>
 
 
-<%= form_tag('/recipes/add_url') do %>
- <%= text_field_tag 'url' %>
-  <%= button_tag do
-    content_tag(:strong, 'Add Recipe by Url')
-  end %>
-<% end %>
-
-<br />
-
-<%= link_to 'Add your own Recipe', new_recipe_path %>
-
-
-<br />
-<br />
-<%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %>
-
-<% if flash[:notice] %>
-  <p class="flash-notice"><%= flash[:notice] %></p>
-<% end %>
-
+<p>
+  <%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %>
+</p>

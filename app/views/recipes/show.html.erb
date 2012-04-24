@@ -1,12 +1,11 @@
 <% content_for :head do %>
   <%= javascript_include_tag "recipe" %>
 <% end %>
-<p id="notice"><%= notice %></p>
 <form>
   <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
   <h1><%= @recipe.name %></h1>
   <div>
-    Number of people: <%= @recipe.num_people %>
+    <strong>Number of people:</strong> <%= @recipe.num_people %>
   </div>
 
   <div>
@@ -29,7 +28,11 @@
     <% end %>
   </ol>  
 
-
+  <% unless @recipe.url.blank? %>
+    <p>
+      <%= link_to "Original Recipe", @recipe.url%>
+    </p>
+  <% end %>
   
 </form>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

@@ -36,6 +36,7 @@ class Site < ActiveRecord::Base
         recipe = Recipe.new
         recipe.name = title
         recipe.num_people = 4
+        recipe.url = url
         recipe.save
 
         Ingredient.multi_save(ingredients, recipe)

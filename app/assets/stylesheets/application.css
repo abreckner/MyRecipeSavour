@@ -10,4 +10,10 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap/bootstrap.css
+ *= require bootstrap/bootstrap-responsive.css
 */
+
+#user_nav {
+  float:right;
+}
