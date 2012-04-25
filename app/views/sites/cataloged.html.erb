@@ -1,9 +1,6 @@
 <h1>Cataloged sites</h1>
 
-<table>
-  <tr>
-    <th>Domain</th>
-  </tr>
+<table class="table table-striped table-condensed">
 
 <% @sites.each do |site| %>
   <tr>
@@ -12,6 +9,4 @@
 <% end %>
 </table>
 
-<br />
-<%= link_to 'Back', recipes_path %>
 

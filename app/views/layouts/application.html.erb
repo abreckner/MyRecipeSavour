@@ -8,6 +8,28 @@
   <%= yield :head %>
 </head>
 <body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">My Recipe Savour</a>
+        <ul class="nav">
+          <li>
+            <%= link_to 'Recipes', recipes_path %>
+          </li>
+          <li><%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %></li>
+        </ul>
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+            <li class="navbar-text"><%= current_user.email %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <% if notice %>
       <p class="notice"><%= notice %></p>
@@ -17,12 +39,7 @@
     <% end %>
 
     <div id="user_nav">
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-      <% end %>
+      
     </div>
 
     <%= yield %>
