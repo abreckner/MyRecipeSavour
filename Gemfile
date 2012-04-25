@@ -27,6 +27,8 @@ gem "devise", "~> 2.0.4"
 
 gem "cover_me", "~> 1.2.0"
 
+gem "twitter-bootstrap-rails", "~> 2.0.6"
+
 
 # Gems used only for assets and not required
 # in production environments by default.

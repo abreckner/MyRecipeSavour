@@ -10,9 +10,8 @@
  *
  *= require_self
  *= require_tree .
- *= require bootstrap/bootstrap.css
 */
 
-#user_nav {
-  float:right;
+#main-body {
+  width:970px;
 }

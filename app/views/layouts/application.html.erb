@@ -8,7 +8,7 @@
   <%= yield :head %>
 </head>
 <body>
-  <div class="navbar">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="#">My Recipe Savour</a>
@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container" id="main-body">
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
