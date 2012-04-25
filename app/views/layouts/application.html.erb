@@ -12,12 +12,16 @@
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="#">My Recipe Savour</a>
-        <ul class="nav">
-          <li>
-            <%= link_to 'Recipes', recipes_path %>
-          </li>
-          <li><%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %></li>
-        </ul>
+        <% if user_signed_in? %>
+          <ul class="nav">
+            <li>
+              <%= link_to 'Recipes', recipes_path %>
+            </li>
+            <li>
+              <%= link_to 'Cataloged Sites', :controller => :sites, :action => :cataloged %>
+            </li>
+          </ul>
+        <% end %>
         <ul class="nav pull-right">
           <% if user_signed_in? %>
             <li class="navbar-text"><%= current_user.email %></li>
