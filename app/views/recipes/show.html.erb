@@ -28,14 +28,18 @@
     <% end %>
   </ol>
 
-  <% unless @recipe.tag_list.blank? %>
-    <div>
-      <strong>Categories</strong>
-    </div>  
-    <p>
+  
+  <div>
+    <strong>Categories</strong>
+  </div>  
+  <p>
+    <% unless @recipe.tag_list.blank? %>
       <%= @recipe.tag_list %>
-    </p>
-  <% end %>
+    <% else %>
+      <%= link_to 'Add Categories', edit_recipe_path(@recipe) %> 
+    <% end %>
+  </p>
+  
 
   <% unless @recipe.url.blank? %>
     <p>
