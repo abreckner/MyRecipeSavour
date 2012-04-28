@@ -13,7 +13,7 @@
 </table>
 
 <p>
-  <%= form_tag('/recipes/add_url') do %>
+  <%= form_tag(recipes_add_url_path) do %>
    <%= text_field_tag 'url' %>
     <%= button_tag do
       content_tag(:strong, 'Add Recipe by Url')
@@ -23,4 +23,12 @@
 
 <p>
   <%= link_to 'Add your own Recipe', new_recipe_path %>
+</p>
+
+<p>
+  <div>
+    Drag the link below to your bookmark folder to add recipes in one click
+  </div>
+  <a href="javascript:(function(){ window.open('<%= recipes_add_url_url %>?url='+encodeURIComponent(location.href)); })();">My Recipe Savour</a>
+
 </p>

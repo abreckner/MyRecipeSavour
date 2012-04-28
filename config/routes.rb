@@ -1,5 +1,7 @@
 MyRecipeSavour::Application.routes.draw do
-  match "/sites/cataloged" => "sites#cataloged"  
+  match "/sites/cataloged" => "sites#cataloged" 
+
+  match "/recipes/add_url" => "recipes#add_url" 
 
   devise_for :users
 
@@ -14,10 +16,6 @@ MyRecipeSavour::Application.routes.draw do
   resources :instructions
 
   resources :recipes
-
-  match "/recipes/add_url" => "recipes#add_url"
-
-
 
   root :to => "recipes#index"
 
