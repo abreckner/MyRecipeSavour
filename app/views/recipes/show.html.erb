@@ -26,7 +26,16 @@
     <% @instructions.each do |instructions| %>
       <li><%= instructions.formatted_content %></li>
     <% end %>
-  </ol>  
+  </ol>
+
+  <% unless @recipe.tag_list.blank? %>
+    <div>
+      <strong>Categories</strong>
+    </div>  
+    <p>
+      <%= @recipe.tag_list %>
+    </p>
+  <% end %>
 
   <% unless @recipe.url.blank? %>
     <p>

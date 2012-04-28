@@ -29,7 +29,9 @@ gem "cover_me", "~> 1.2.0"
 
 gem "twitter-bootstrap-rails", "~> 2.0.6"
 
-gem "kaminari"  
+gem "kaminari", "~> 0.13.0" 
+
+gem 'acts-as-taggable-on', '~>2.2.0'
 
 
 # Gems used only for assets and not required

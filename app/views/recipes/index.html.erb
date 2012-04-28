@@ -1,4 +1,8 @@
-<h1>Your recipes</h1>
+<% if params[:tag].blank? %>
+  <h1>Your recipes</h1>
+<% else %>
+  <h1><%= params[:tag].capitalize %></h1>
+<% end %>
 
 <%= paginate @recipes %> 
 
@@ -7,6 +11,11 @@
 <% @recipes.each do |recipe| %>
   <tr>
     <td><strong><%= link_to recipe.name, recipe %></strong></td>
+    <td>
+      <% recipe.tags.each do |tag| %>
+        <%= link_to tag.name, recipes_path(:tag => tag.name) %>,
+      <% end %>
+    </td>
     <td><i class="icon-trash"></i><%= link_to 'Delete', recipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

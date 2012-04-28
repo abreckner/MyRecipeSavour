@@ -3,7 +3,11 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = current_user.recipes.order("created_at desc").page(params[:page]).per(10) 
+    unless params[:tag].blank?
+      @recipes = current_user.recipes.tagged_with(params[:tag]).order("created_at desc").page(params[:page]).per(10)
+    else
+      @recipes = current_user.recipes.order("created_at desc").page(params[:page]).per(10) 
+    end
 
     respond_to do |format|
       format.html # index.html.erb
