@@ -33,6 +33,8 @@ gem "kaminari", "~> 0.13.0"
 
 gem 'acts-as-taggable-on', '~>2.2.0'
 
+gem "fakeweb", "~> 1.3.0"
+
 
 # Gems used only for assets and not required
 # in production environments by default.

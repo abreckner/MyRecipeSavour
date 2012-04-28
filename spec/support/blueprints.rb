@@ -25,6 +25,10 @@ Site.blueprint do
   ingredient_selector {'#ingredients li'}
 end
 
+User.blueprint do
+  email {'test@test.com'}
+end
+
 # Add your blueprints here.
 #
 # e.g.

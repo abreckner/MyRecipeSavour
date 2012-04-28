@@ -2,11 +2,6 @@ require 'open-uri'
 require 'rubygems'
 require 'nokogiri'
 
-#html = Nokogiri::HTML(open(an_url).read)
-# This would search for any images inside a paragraph (XPath)
-#html.xpath('/html/body//p//img')
-# This would search for any images with the class "test" (CSS selector)
-#html.css('img.test')
 
 class Site < ActiveRecord::Base
   attr_accessible :domain, :ingredient_selector, :method_selector, :title_selector, :url, :user
