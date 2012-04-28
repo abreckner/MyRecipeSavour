@@ -15,3 +15,16 @@
 #main-body {
   width:970px;
 }
+
+.pagination .page.current {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #DDD;
+  border-left-width: 0;
+}
+
+.pagination{
+  border-left: 1px solid #ddd;
+}

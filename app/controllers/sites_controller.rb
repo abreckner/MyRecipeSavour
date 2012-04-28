@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all
+    @sites = Site.order("created_at").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +12,7 @@ class SitesController < ApplicationController
   end
 
   def cataloged
-    @sites = Site.cataloged
+    @sites = Site.cataloged.order("created_at").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

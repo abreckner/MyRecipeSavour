@@ -1,5 +1,7 @@
 <h1>Your recipes</h1>
 
+<%= paginate @recipes %> 
+
 <table class="table table-striped table-condensed">
 
 <% @recipes.each do |recipe| %>
