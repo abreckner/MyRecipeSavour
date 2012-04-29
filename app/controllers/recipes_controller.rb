@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :validate_user_recipe, :only => [:show, :edit, :update, :destroy]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -18,7 +19,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
     @instructions = @recipe.instructions
     @ingredients = @recipe.ingredients
 
@@ -41,7 +42,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
     @instructions = @recipe.formatted_instructions
     @ingredients = @recipe.formatted_ingredients
   end
@@ -69,8 +70,7 @@ class RecipesController < ApplicationController
   # PUT /recipes/1
   # PUT /recipes/1.json
   def update
-    @recipe = Recipe.find(params[:id])
-
+    @recipe = current_user.recipes.find(params[:id])
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
         @recipe.instructions.delete_all
@@ -89,9 +89,8 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
-
     respond_to do |format|
       format.html { redirect_to recipes_url }
       format.json { head :no_content }
@@ -112,6 +111,13 @@ class RecipesController < ApplicationController
           redirect_to action: :new  
         }
       end
+    end
+  end
+
+  private
+  def validate_user_recipe
+    unless current_user.recipes.exists?(params[:id])
+      redirect_to recipes_path, notice: 'You are no allowed to see this recipe.'
     end
   end
 end

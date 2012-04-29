@@ -53,6 +53,13 @@ describe RecipesController do
       assigns(:instructions).should eq recipe.instructions
       assigns(:ingredients).should eq recipe.ingredients
     end
+
+    it 'does not allow someone else to see the recipe' do
+      user = User.create(:email=>"test", :password => "test")
+      recipe = Recipe.make!(:complete, :user => user)
+      get :show, {:id => recipe.id}
+      response.should redirect_to(recipes_path)
+    end
     
   end
 
@@ -80,11 +87,18 @@ describe RecipesController do
     
     it 'shows the edit page' do
       recipe = Recipe.make!(:complete, :user => @user)
-      get :edit, {:id => recipe.id}
+      post :edit, {:id => recipe.id}
       response.should be_success
       assigns(:recipe).should eq(recipe)
       assigns(:instructions).should eq recipe.formatted_instructions
       assigns(:ingredients).should eq recipe.formatted_ingredients
+    end
+
+    it 'does not allow someone else to edit the recipe' do
+      user = User.create(:email=>"test", :password => "test")
+      recipe = Recipe.make!(:complete, :user => user)
+      post :edit, {:id => recipe.id}
+      response.should redirect_to(recipes_path)
     end
     
   end
@@ -134,7 +148,7 @@ describe RecipesController do
     before (:each) do
       @user = User.make!
       sign_in @user
-      @recipe = Recipe.make!
+      @recipe = Recipe.make!(:user => @user)
     end
 
     it "should be valid" do
@@ -146,6 +160,13 @@ describe RecipesController do
       post :update, {:id => @recipe.id, :recipe => {:name => nil}, :ingredients => 'test', :instructions => 'test'}
       response.should render_template("edit")
     end
+
+    it 'does not allow someone else to update the recipe' do
+      user = User.create(:email=>"test", :password => "test")
+      recipe = Recipe.make!(:complete, :user => user)
+      post :update, {:id => recipe.id}
+      response.should redirect_to(recipes_path)
+    end
   end
 
   describe "DELETE destroy" do
@@ -153,15 +174,23 @@ describe RecipesController do
       @user = User.make!
       sign_in @user
     end
+
     it "destroys the requested site" do
-      recipe = Recipe.make!
+      recipe = Recipe.make!(:user => @user)
       expect {
         delete :destroy, {:id => recipe.id}
       }.to change(Recipe, :count).by(-1)
     end
 
-    it "redirects to the sites list" do
+    it "does not destroy the requested site if the user does not own the recipe" do
       recipe = Recipe.make!
+      expect {
+        delete :destroy, {:id => recipe.id}
+      }.to change(Recipe, :count).by(0)
+    end
+
+    it "redirects to the sites list" do
+      recipe = Recipe.make!(:user => @user)
       delete :destroy, {:id => recipe.id}
       response.should redirect_to(recipes_url)
     end
