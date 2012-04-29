@@ -42,8 +42,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
-    @instructions = @recipe.instructions.inject(""){|sum, i| sum + i.formatted_content + "\n"}
-    @ingredients = @recipe.ingredients.inject(""){|sum, i| sum + i.formatted_content + "\n"}
+    @instructions = @recipe.formatted_instructions
+    @ingredients = @recipe.formatted_ingredients
   end
 
   # POST /recipes

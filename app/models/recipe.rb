@@ -8,4 +8,12 @@ class Recipe < ActiveRecord::Base
 
   validates :num_people, :numericality => { :only_integer => true }, :allow_blank => true
   validates :name, :presence => true
+
+  def formatted_instructions
+    self.instructions.inject(""){|sum, i| sum + i.formatted_content + "\n"}
+  end
+
+  def formatted_ingredients
+    self.ingredients.inject(""){|sum, i| sum + i.formatted_content + "\n"}
+  end
 end
