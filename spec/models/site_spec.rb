@@ -15,8 +15,7 @@ describe Site do
 
   context "add_recipe" do
     before(:each) do
-      @user = User.make
-      @user.save
+      @user = User.make!
     end
     after(:each) do
       User.destroy_all
@@ -40,10 +39,8 @@ describe Site do
 
     it "should find the recipe and save it" do
       url = "http://www.taste.com.au/recipe/1"
-      site = Site.make
-      site.save
+      site = Site.make!
       FakeWeb.register_uri(:get, url , :body => "<h1>Title Test</h1><ul id='methods'><li>method 1</li><li>method 2</li></ul><ul id='ingredients'><li>ingredient 1</li><li>ingredient 2</li><li>ingredient 3</li></ul>")
-      #puts Nokogiri::HTML(open(url).read)
       recipe = Site.add_recipe url, @user
       recipe.name.should == "Title Test"
       recipe.instructions.length.should == 2
