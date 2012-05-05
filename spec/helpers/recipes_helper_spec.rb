@@ -1,14 +1,10 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ProtoHelper. For example:
-#
-# describe ProtoHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe RecipesHelper do
+  it "should link tags" do
+    recipe = Recipe.make
+    recipe.tag_list = "tag1, tag2, tag3"
+    recipe.save
+    helper.link_tags(recipe.tags).should == "<a href=\"/recipes?tag=tag3\">tag3</a>, <a href=\"/recipes?tag=tag2\">tag2</a>, <a href=\"/recipes?tag=tag1\">tag1</a>"
+  end
 end

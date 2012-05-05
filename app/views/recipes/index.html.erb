@@ -12,9 +12,7 @@
   <tr>
     <td><strong><%= link_to recipe.name, recipe %></strong></td>
     <td>
-      <% recipe.tags.each do |tag| %>
-        <%= link_to tag.name, recipes_path(:tag => tag.name) %>,
-      <% end %>
+      <%= link_tags recipe.tags %>
     </td>
     <td><i class="icon-trash"></i><%= link_to 'Delete', recipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
