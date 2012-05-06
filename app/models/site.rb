@@ -4,7 +4,7 @@ require 'nokogiri'
 
 
 class Site < ActiveRecord::Base
-  attr_accessible :domain, :ingredient_selector, :method_selector, :title_selector, :url, :user
+  attr_accessible :domain, :ingredient_selector, :method_selector, :title_selector, :url, :user, :image_selector
   belongs_to :user
   before_save :parse_domain
 
@@ -26,10 +26,13 @@ class Site < ActiveRecord::Base
         title = html.css(site.title_selector).text.strip
         instructions = html.css(site.method_selector).children.inject(''){|sum, n| sum + n.text + "\n"}
         ingredients = html.css(site.ingredient_selector).children.inject(''){|sum, n| sum + n.text + "\n"}
-
+        unless site.image_selector.blank?
+          image = html.css(site.image_selector).attribute('src').value
+        end
 
         recipe = Recipe.new
         recipe.name = title
+        recipe.image = image
         recipe.num_people = 4
         recipe.url = url
         recipe.save

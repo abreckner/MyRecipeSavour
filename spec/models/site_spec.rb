@@ -40,11 +40,12 @@ describe Site do
     it "should find the recipe and save it" do
       url = "http://www.taste.com.au/recipe/1"
       site = Site.make!
-      FakeWeb.register_uri(:get, url , :body => "<h1>Title Test</h1><ul id='methods'><li>method 1</li><li>method 2</li></ul><ul id='ingredients'><li>ingredient 1</li><li>ingredient 2</li><li>ingredient 3</li></ul>")
+      FakeWeb.register_uri(:get, url , :body => "<h1>Title Test</h1><ul id='methods'><li>method 1</li><li>method 2</li></ul><ul id='ingredients'><li>ingredient 1</li><li>ingredient 2</li><li>ingredient 3</li></ul><img class='image' src='http://www.test.com/img.gif'/>")
       recipe = Site.add_recipe url, @user
       recipe.name.should == "Title Test"
       recipe.instructions.length.should == 2
       recipe.ingredients.length.should == 3
+      recipe.image.should == "http://www.test.com/img.gif"
       recipe.url.should == url
     end
   end

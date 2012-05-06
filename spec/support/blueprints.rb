@@ -29,6 +29,7 @@ Site.blueprint do
   title_selector {'h1'}
   method_selector {'#methods li'}
   ingredient_selector {'#ingredients li'}
+  image_selector {'.image'}
 end
 
 User.blueprint do

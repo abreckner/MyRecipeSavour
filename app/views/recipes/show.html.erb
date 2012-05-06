@@ -4,6 +4,11 @@
 <form>
   <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
   <h1><%= @recipe.name %></h1>
+  <% unless @recipe.image.blank? %>
+    <div>
+      <%= image_tag @recipe.image %>
+    </div>
+  <% end %>
   <div>
     <strong>Number of people:</strong> <%= @recipe.num_people %>
   </div>
