@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   acts_as_taggable
-  attr_accessible :name, :num_people, :description, :tag_list
+  attr_accessible :name, :num_people, :description, :tag_list, :image
   has_many :equipments
   has_many :ingredients
   has_many :instructions
