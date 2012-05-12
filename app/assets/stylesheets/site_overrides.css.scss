@@ -1,0 +1,28 @@
+body {
+  background-color: #93907B;
+}
+
+#main-body {
+  width:950px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 2px 5px #666;
+  margin-top: -20px;
+}
+
+.navbar .container {
+  width:90%;
+}
+
+.pagination {
+  height:20px;
+}
+
+.pagination a, .pagination .page.current {
+  line-height:20px;
+  padding: 0 7px;
+}
+
+.controls label {
+  display: inline;
+}

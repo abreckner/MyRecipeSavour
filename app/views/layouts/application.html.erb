@@ -11,7 +11,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="#">My Recipe Savour</a>
+        <a class="brand" href="/">My Recipe Savour</a>
         <% if user_signed_in? %>
           <ul class="nav">
             <li>
@@ -41,10 +41,6 @@
     <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-
-    <div id="user_nav">
-      
-    </div>
 
     <%= yield %>
   </div>
