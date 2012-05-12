@@ -28,6 +28,9 @@ class Site < ActiveRecord::Base
         ingredients = html.css(site.ingredient_selector).children.inject(''){|sum, n| sum + n.text + "\n"}
         unless site.image_selector.blank?
           image = html.css(site.image_selector).attribute('src').value
+          if !image.blank? && image[0] == "/"
+            image = URI::HTTP.build({:host => site_domain,:path => image}).to_s
+          end
         end
 
         recipe = Recipe.new
