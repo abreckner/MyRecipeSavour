@@ -71,6 +71,9 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
+        if @site.parseable? && !@site.user.blank?
+          SiteMailer.site_cataloged_email(@site).deliver
+        end
         format.html { redirect_to @site, notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
