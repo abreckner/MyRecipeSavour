@@ -35,21 +35,22 @@
 
   
   <div>
-    <strong>Categories</strong>
+    <strong>Categories</strong> <span class="btn btn-mini" id="js_edit_categories">Update</span>
   </div>  
-  <p>
+  <div id="js_category_display">
     <% unless @recipe.tag_list.blank? %>
-      <%= link_tags @recipe.tags %>
-    <% else %>
-      <%= link_to 'Add Categories', edit_recipe_path(@recipe) %> 
+      <%= link_tags @recipe.tags %> 
     <% end %>
-  </p>
+  </div>
+  <div id="js_category_input" class="initially_invisible">
+    <%= text_field_tag 'recipe[tag_list]', comma_tags(@recipe.tags) %> <span class="btn btn-mini btn-primary" id="js_save_categories">Save</span>
+  </div>
   
 
   <% unless @recipe.url.blank? %>
-    <p>
+    <div class="original_recipe_link">
       <%= link_to "Original Recipe", @recipe.url%>
-    </p>
+    </div>
   <% end %>
   
 </form>

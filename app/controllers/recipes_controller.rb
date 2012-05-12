@@ -73,12 +73,19 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.find(params[:id])
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
-        @recipe.instructions.delete_all
-        @recipe.ingredients.delete_all
-        Instruction.multi_save(params[:instructions], @recipe)
-        Ingredient.multi_save(params[:ingredients], @recipe)
+        
+        unless params[:instructions].nil?
+          @recipe.instructions.delete_all
+          Instruction.multi_save(params[:instructions], @recipe)
+        end
+        
+        unless params[:ingredients].nil?
+          @recipe.ingredients.delete_all
+          Ingredient.multi_save(params[:ingredients], @recipe)
+        end
+
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: {:recipe => @recipe, :tags => @recipe.tag_list} }
       else
         format.html { render action: "edit" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
