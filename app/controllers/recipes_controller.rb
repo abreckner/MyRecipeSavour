@@ -114,7 +114,7 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
         format.html { 
-          flash[:notice] ="This site has not yet been indexed. In the meantime you can copy and paste the recipe here."
+          flash[:notice] ="This site has not yet been cataloged. In the meantime you can copy and paste the recipe here."
           redirect_to action: :new  
         }
       end
