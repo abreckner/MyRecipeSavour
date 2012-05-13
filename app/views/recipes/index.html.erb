@@ -19,20 +19,26 @@
 <% end %>
 </table>
 
-<p>
-  <%= form_tag(recipes_add_url_path) do %>
-   <%= text_field_tag 'url' %>
-    <%= button_tag do
-      content_tag(:strong, 'Add Recipe by Url')
-    end %>
-  <% end %>
-</p>
+<div class="clearfix">
+  <p class="add_recipe">
+    <%= link_to 'Add your own Recipe', new_recipe_path, :class => 'btn' %>
+  </p>
+
+  <p>
+    <%= form_tag(recipes_add_url_path, { :class => "form-horizontal"}) do %>
+     <%= text_field_tag 'url' %>
+      <%= button_tag do
+        'Add Recipe by Url *'
+      end %>
+    <% end %>
+  </p>
+</div>
 
 <p>
-  <%= link_to 'Add your own Recipe', new_recipe_path %>
+  * If the recipe you are trying to add belongs to a site that has been cataloged, the recipe will be added automatically. If it hasn't you will have to add the recipe in manually for now, but you will be notified once the site is cataloged. You can see a list of the cataloged sites <%= link_to 'here', :controller => :sites, :action => :cataloged %>.
 </p>
 
-<p>
+<p class="bookmarklet">
   <div>
     Drag the link below to your bookmark folder to add recipes in one click
   </div>
