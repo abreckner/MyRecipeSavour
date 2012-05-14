@@ -1,3 +1,4 @@
+require 'open-uri'
 class SitesController < ApplicationController
   before_filter :authenticate_admin, :except => :cataloged
   # GET /sites
@@ -18,6 +19,29 @@ class SitesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @sites }
     end
+  end
+
+  def add_site
+    @sites = Site.cataloged.order("created_at").page(params[:page]).per(10)
+    @site = Site.new
+
+    url = URI.parse(params[:url])
+    @site.url = url.to_s
+    @site.user = current_user
+
+    if url.class == URI::HTTP || url.class == URI::HTTPS # user entered full url i.e. http://www.taste.com.au
+      @site.domain = url.host
+    else
+      @site.domain = url.to_s 
+    end
+
+    if @site.save
+      flash[:notice] = "Thanks for requesting #{@site.domain}. You will get an email when this site has been cataloged."
+    else
+      flash[:notice] = "Sorry, something went wrong. Please try again."
+    end
+
+    render action: "cataloged"
   end
 
   # GET /sites/1

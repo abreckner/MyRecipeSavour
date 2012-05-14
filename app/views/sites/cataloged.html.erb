@@ -1,7 +1,17 @@
-<h1>Cataloged sites</h1>
+<h1>Add a site</h1>
 <p>
   If the recipe you are trying to add belongs to one of the sites cataloged below, the recipe will be added automatically. If it hasn't you will have to add the recipe in manually for now, but you will be notified once the site is cataloged.
 </p>
+
+<p>
+  <%= form_tag(sites_add_site_path, { :class => "form-horizontal"}) do %>
+   <%= text_field_tag 'url' %>
+    <%= button_tag do
+      'Request a Site'
+    end %>
+  <% end %>
+</p>
+
 <%= paginate @sites %>
 <table class="table table-striped table-condensed">
 

@@ -1,5 +1,6 @@
 MyRecipeSavour::Application.routes.draw do
-  match "/sites/cataloged" => "sites#cataloged" 
+  match "/sites/cataloged" => "sites#cataloged"
+  match "/sites/add_site" => "sites#add_site" 
 
   match "/recipes/add_url" => "recipes#add_url" 
 
