@@ -3,6 +3,12 @@
 <% end %>
 
 <h1><%= @recipe.name %></h1>
+<% unless @recipe.url.blank? %>
+  <div class="original_recipe_link">
+    <%= link_to "Original Recipe", @recipe.url%>
+  </div>
+<% end %>
+
 <% unless @recipe.image.blank? %>
   <div>
     <%= image_tag @recipe.image %>
@@ -47,12 +53,6 @@
   </div>
 </form>
 
-<% unless @recipe.url.blank? %>
-  <div class="original_recipe_link">
-    <%= link_to "Original Recipe", @recipe.url%>
-  </div>
-<% end %>
-
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn' %>
+</div>

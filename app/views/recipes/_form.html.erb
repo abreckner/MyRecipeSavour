@@ -56,5 +56,10 @@
 
   <div class="form-actions">
     <%= f.submit 'Save Recipe' ,:class => 'btn btn-primary' %>
+    <% if params[:action] == 'edit' %>
+      <%= link_to 'Cancel', @recipe, :class => 'btn btn-secondary' %>
+    <% else %>
+      <%= link_to 'Cancel', recipes_path, :class => 'btn btn-secondary' %>
+    <% end %>
   </div>
 <% end %>
