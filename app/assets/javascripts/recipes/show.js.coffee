@@ -10,7 +10,8 @@ edit_categories_click_handler = ->
   $('#js_category_display').hide()
   $('#js_category_input').show()
 
-save_categories_click_handler =->
+save_categories_click_handler = (e)->
+  e.preventDefault();
   recipe_id = $('#recipe_id').val()
   recipe_tag_list = $('#recipe_tag_list').val()
   $.ajax "/recipes/#{recipe_id}.json",
@@ -29,4 +30,5 @@ save_categories_click_handler =->
 $ ->
   $('#js_edit_categories').live 'click', edit_categories_click_handler
   $('#js_save_categories').live 'click', save_categories_click_handler
+  $('#js_category_form').live 'submit', save_categories_click_handler
     

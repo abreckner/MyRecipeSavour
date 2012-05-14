@@ -1,39 +1,39 @@
 <% content_for :head do %>
   <%= javascript_include_tag "recipe" %>
 <% end %>
-<form>
-  <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
-  <h1><%= @recipe.name %></h1>
-  <% unless @recipe.image.blank? %>
-    <div>
-      <%= image_tag @recipe.image %>
-    </div>
+
+<h1><%= @recipe.name %></h1>
+<% unless @recipe.image.blank? %>
+  <div>
+    <%= image_tag @recipe.image %>
+  </div>
+<% end %>
+<div>
+  <strong>Number of people:</strong> <%= @recipe.num_people %>
+</div>
+
+<div>
+  <strong>Ingredients</strong>
+</div>
+
+<ul>
+  <% @ingredients.each do |ingredient| %>
+    <li><%= ingredient.formatted_content %></li>
   <% end %>
-  <div>
-    <strong>Number of people:</strong> <%= @recipe.num_people %>
-  </div>
+</ul>
 
-  <div>
-    <strong>Ingredients</strong>
-  </div>
+<div>
+  <strong>Methods</strong>
+</div>
 
-  <ul>
-    <% @ingredients.each do |ingredient| %>
-      <li><%= ingredient.formatted_content %></li>
-    <% end %>
-  </ul>
+<ol>
+  <% @instructions.each do |instructions| %>
+    <li><%= instructions.formatted_content %></li>
+  <% end %>
+</ol>
 
-  <div>
-    <strong>Methods</strong>
-  </div>
-
-  <ol>
-    <% @instructions.each do |instructions| %>
-      <li><%= instructions.formatted_content %></li>
-    <% end %>
-  </ol>
-
-  
+<form id="js_category_form">
+  <input type="hidden" name="recipe_id" id="recipe_id" value="<%= @recipe.id %>" />
   <div>
     <strong>Categories</strong> <span class="btn btn-mini" id="js_edit_categories">Update</span>
   </div>  
@@ -45,14 +45,14 @@
   <div id="js_category_input" class="initially_invisible">
     <%= text_field_tag 'recipe[tag_list]', comma_tags(@recipe.tags) %> <span class="btn btn-mini btn-primary" id="js_save_categories">Save</span>
   </div>
-  
-
-  <% unless @recipe.url.blank? %>
-    <div class="original_recipe_link">
-      <%= link_to "Original Recipe", @recipe.url%>
-    </div>
-  <% end %>
-  
 </form>
+
+<% unless @recipe.url.blank? %>
+  <div class="original_recipe_link">
+    <%= link_to "Original Recipe", @recipe.url%>
+  </div>
+<% end %>
+
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
