@@ -1,0 +1,13 @@
+
+    <h1>Welcome to My Recipe Savour</h1>
+
+
+
+  <div id="getting-started">
+    <p>Are you tired of having to print out the recipes you find online in order to save them?</p>
+    <p>Well, my wife was, so I decided to make it easy for her to save and catalog her recipes.</p>
+    <p><span>1</span> Simply add the URL of the recipe you like, we will copy the recipe over into your recipe book (if the site has been cataloged).</p>
+    <p><span>2</span> If your recipe belongs to a site that is not cataloged, you can ask us to <%= link_to 'Add a Site', :controller => :sites, :action => :cataloged %>.</p>
+    <p><span>3</span> So what are you waiting for? Go to your <%= link_to 'Recipes', recipes_path %>.</p>
+  </div>
+

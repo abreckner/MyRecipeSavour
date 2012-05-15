@@ -1,6 +1,8 @@
 require 'open-uri'
 class SitesController < ApplicationController
-  before_filter :authenticate_admin, :except => :cataloged
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin, :except => [:cataloged, :add_site]
+
   # GET /sites
   # GET /sites.json
   def index

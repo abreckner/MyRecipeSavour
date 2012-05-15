@@ -1,4 +1,6 @@
 MyRecipeSavour::Application.routes.draw do
+  root :to => 'home#index'
+
   match "/sites/cataloged" => "sites#cataloged"
   match "/sites/add_site" => "sites#add_site" 
 
